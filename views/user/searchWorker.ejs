@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/home.css">
+  </head>
+<body>
+  <div class="row my-header">
+    <div class="col-sm-2 logo">
+      <a href="/"><img src="#" alt="logo" class="logo"></a>
+    </div>
+    <div class="col-sm-4 search-container">
+      <form action="/searchworkerbyname" method="get" class="row">
+        <input type="text" class="col-sm-9" name="worker" placeholder="Search Worker By Name" id="worker">
+        <input type="submit" class="col-sm-3 btn btn-primary" value="Search">
+      </form>
+    </div>
+    <div class="col-sm-5 nav-container">
+      <div class="row">
+        <a class="col-sm-3" href="#"></a>
+        <a class="col-sm-3" href="#"></a>
+        <a class="col-sm-3" href="#"></a>
+        <a class="col-sm-3" href="/mybooking">My Booking</a>
+      </div>
+    </div>
+    <div class="col-sm-1 login-container">
+      <% if(loginButton != 'Login') { %>
+        <a href="/user/logout" class="btn btn-secondary"><%- loginButton %></a>
+      <% } else { %>
+        <a href="/login" class="btn btn-secondary"><%- loginButton %></a>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="row main-container">
+    <div class="col-sm-2 left-pannel">
+      <h4 class="text-center text-white">Worker Type</h4>
+      <p data-workerData='<%- JSON.stringify(workerData) %>' id="workerData"></p>
+      <a href="/" class="alert alert-success text-center" style="display: block;">All Worker</a>
+      <% workerType.forEach(value => { %>
+        <a href="/filterworker/<%-value._id%>" class="alert alert-success text-center" style="display: block;"><%- value.worker_type %></a>
+      <% }) %>
+    </div>
+    <div class="col-sm-10 main-content-container">
+      <div class="row">
+        <% workerData.forEach(value => { %>
+          <div class="card col-sm-3 mt-2 ml-2">
+            <img src="<%- value.worker_image_url %>" alt="image" class="card-img-top w-50">
+            <div class="card-body">
+              <div class="card-title">
+                Worker-Name: <%- value.worker_name %>
+              </div>
+              <p class="card-text">
+                Worker-Type: <%- value.worker_type.worker_type %>
+              </p>
+              <button onclick="bookWorker('<%-value._id%>')" class="btn btn-primary">Book Worker</button>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>

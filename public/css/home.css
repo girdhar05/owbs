@@ -1,0 +1,16 @@
+html, body {
+    height: 100%;
+}
+.my-header {
+    background-color: lightblue;
+    padding: 10px;
+}
+
+.main-container {
+    height: 90%;
+}
+
+.left-pannel {
+    background-color: lightgreen;
+    height: 100%;
+}
